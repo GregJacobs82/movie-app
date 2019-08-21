@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Latest Movie</h1>
+        <h1>Latest Movies</h1>
         <v-container v-if="loading">
             <div class="text-xs-center">
                 <v-progress-circular indeterminate :size="150" :width="8" color="green"></v-progress-circular>
@@ -12,15 +12,16 @@
                     <v-card>
                         <v-img :src="item.Poster" aspect-ratio="1"></v-img>
                         <v-card-title primary-title>
-                            <div>
-                                <h2>{{item.Title}}</h2>
-                                <div>Year: {{item.Year}}</div>
-                                <div>Type: {{item.Type}}</div>
-                                <div>IMDB-id: {{item.imdbID}}</div>
+                            <div style="width:100%;">
+                                <h3>{{item.Title}}</h3>
+                                <hr />
+                                <p>Year: {{item.Year}}</p>
+                                <p>Type: {{item.Type}}</p>
+                                <p>IMDB-id: {{item.imdbID}}</p>
                             </div>
                         </v-card-title>
                         <v-card-actions class="justify-center">
-                            <v-btn flat color="green" @click="singleMovie(item.imdbID)">View</v-btn>
+                            <v-btn text color="green" @click="singleMovie(item.imdbID)">View</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -45,10 +46,16 @@ export default {
             )
             .then(response => {
                 this.wholeResponse = response.data.Search;
+                this.loading = false;
             })
             .catch(error => {
                 console.log(error);
             });
+    },
+    methods: {
+        singleMovie(id) {
+            this.$router.push("/movie/" + id);
+        }
     }
 };
 </script>
