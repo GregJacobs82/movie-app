@@ -1,36 +1,36 @@
 <template>
-    <div>
-        <h1>Latest Movies</h1>
-        <v-container v-if="loading">
-            <div class="text-xs-center">
-                <v-progress-circular indeterminate :size="150" :width="8" color="green"></v-progress-circular>
-            </div>
-        </v-container>
-        <v-container v-else grid-list-xl>
-            <v-layout wrap>
-                <v-flex xs4 v-for="(item, index) in wholeResponse" :key="index" mb-2>
-                    <v-card>
-                        <v-img :src="item.Poster" aspect-ratio="1"></v-img>
-                        <v-card-title primary-title>
-                            <div style="width:100%;">
-                                <h3>{{item.Title}}</h3>
-                                <hr />
-                                <p>Year: {{item.Year}}</p>
-                                <p>Type: {{item.Type}}</p>
-                                <p>IMDB-id: {{item.imdbID}}</p>
-                            </div>
-                        </v-card-title>
-                        <v-card-actions class="justify-center">
-                            <v-btn text color="green" @click="singleMovie(item.imdbID)">View</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-flex>
-            </v-layout>
-        </v-container>
-    </div>
+    <v-container v-if="loading">
+        <div class="text-xs-center">
+            <v-progress-circular indeterminate :size="150" :width="8" color="green"></v-progress-circular>
+        </div>
+    </v-container>
+
+    <v-container v-else grid-list-xl>
+        <v-layout wrap>
+            <v-flex xs4 v-for="(item, index) in wholeResponse" :key="index" mb-2>
+                <v-card>
+                    <v-img :src="item.Poster" aspect-ratio="1"></v-img>
+
+                    <v-card-title primary-title>
+                        <div>
+                            <h2>{{item.Title}}</h2>
+                            <div>Year: {{item.Year}}</div>
+                            <div>Type: {{item.Type}}</div>
+                            <div>IMDB-id: {{item.imdbID}}</div>
+                        </div>
+                    </v-card-title>
+
+                    <v-card-actions class="justify-center">
+                        <v-btn flat color="green" @click="singleMovie(item.imdbID)">View</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
+
 <script>
-import axios from "axios";
+import movieApi from "@/services/MovieApi";
 
 export default {
     data() {
@@ -40,12 +40,10 @@ export default {
         };
     },
     mounted() {
-        axios
-            .get(
-                "http://www.omdbapi.com/?s=mummy&apikey=1574ee28&page=1&type=movie&Content-Type=application/json"
-            )
+        movieApi
+            .fetchMovieCollection("indiana")
             .then(response => {
-                this.wholeResponse = response.data.Search;
+                this.wholeResponse = response.Search;
                 this.loading = false;
             })
             .catch(error => {
