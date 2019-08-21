@@ -2,12 +2,15 @@
     <v-app>
         <v-app-bar app>
             <v-toolbar-title class="headline text-uppercase">
-                <span>Vuetify</span>
-                <span class="font-weight-light">MATERIAL DESIGN</span>
+                <span>Greg's</span>
+                <span class="font-weight-light">Movie App</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn text href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
-                <span class="mr-2">Latest Release</span>
+            <v-flex xs12 sm6 md3>
+                <v-text-field label="Movie Name" v-model="searchString"></v-text-field>
+            </v-flex>
+            <v-btn text :disabled="!dataAvailable" @click="searchMovie">
+                <span>Search</span>
             </v-btn>
         </v-app-bar>
 
@@ -20,9 +23,21 @@
 <script>
 export default {
     name: "App",
-    components: {},
-    data: () => ({
-        //
-    })
+    data() {
+        return {
+            searchString: ""
+        };
+    },
+    methods: {
+        searchMovie() {
+            this.$router.push("/search/" + this.searchString);
+            this.searchString = "";
+        }
+    },
+    computed: {
+        dataAvailable() {
+            return this.searchString !== null && this.searchString !== "";
+        }
+    }
 };
 </script>
