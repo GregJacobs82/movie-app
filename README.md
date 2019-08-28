@@ -1,6 +1,10 @@
 # Greg's Movie App
+
+> Using "Open Movie DB" Api - http://www.omdbapi.com
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/705bfab9-710b-4d4c-9fc3-f9839eb60fa7/deploy-status)](https://app.netlify.com/sites/open-movie-db/deploys)
-Using "Open Movie DB" Api - http://www.omdbapi.com
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/3746f61cecce98a1fe84/maintainability)](https://codeclimate.com/github/GregJacobs82/movie-app/maintainability)
 
 ## Project setup
 
