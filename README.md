@@ -6,6 +6,8 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/3746f61cecce98a1fe84/maintainability)](https://codeclimate.com/github/GregJacobs82/movie-app/maintainability)
 
+---
+
 ## Project setup
 
 ```
