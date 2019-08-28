@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-toolbar app>
+        <v-app-bar app>
             <v-toolbar-title class="headline text-uppercase">
                 <router-link to="/" tag="span" style="cursor: pointer">
                     <span>Greg's</span>
@@ -11,10 +11,10 @@
             <v-flex xs12 sm6 md3>
                 <v-text-field label="Movie Name" v-model="searchString"></v-text-field>
             </v-flex>
-            <v-btn flat :disabled="!dataAvailable" @click="searchMovie">
+            <v-btn text :disabled="!dataAvailable" @click="searchMovie">
                 <span class="mr-2">Search</span>
             </v-btn>
-        </v-toolbar>
+        </v-app-bar>
 
         <v-content>
             <router-view></router-view>
